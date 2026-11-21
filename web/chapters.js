@@ -1,0 +1,68 @@
+const MothCampaign = [
+  {
+    name: ['石桥街', 'Stonebridge'],
+    note: ['石桥边只剩两盏窗灯。有人还醒着，等一封回信。', 'Two windows still glow by the stone bridge. Someone is waiting for a letter.'],
+    hint: ['先看雾的下一格，再迈步。绕开追雾，投完信后回到邮局。', 'Read the fog’s next tile before you move. Circle back to the post office after your deliveries.'],
+    limit: 14,
+    lanterns: 1,
+    rows: [
+      '..#....',
+      '....##.',
+      '.......',
+      '#..MF..',
+      '.M....#',
+      '##..#..',
+      '..P#..#',
+    ],
+  },
+  {
+    name: ['纸灯巷', 'Lantern Alley'],
+    note: ['巷子里的纸灯一盏接一盏熄灭。还有三封信要投。', 'The alley lanterns are going out one by one. Three letters are still in your bag.'],
+    hint: ['在路口留灯，再飞向另一条巷子。诱灯可照亮三回合。', 'Leave a light at a junction, then take the other alley. A decoy draws the fog for three turns.'],
+    limit: 20,
+    lanterns: 1,
+    rows: [
+      '.#.#..#',
+      '....#FM',
+      '.##..M.',
+      '..##...',
+      '#..M.#.',
+      '...#...',
+      '#...P#.',
+    ],
+  },
+  {
+    name: ['倒月坊', 'Moonwell'],
+    note: ['屋檐下的水映着第二轮月亮。追雾在窄巷里打转。', 'The water under the eaves holds a second moon. Fog loops through the narrow streets.'],
+    hint: ['如果雾封住回程，试着在离开前留下诱灯。', 'If the fog seals the way home, try leaving a decoy before you turn back.'],
+    limit: 22,
+    lanterns: 1,
+    rows: [
+      '......#',
+      '.##..#P',
+      '#F.....',
+      '#.##.M#',
+      '..M...M',
+      '###..#.',
+      '.....#.',
+    ],
+  },
+  {
+    name: ['无眠渡', 'Sleepless Ferry'],
+    note: ['末班渡船就要开了。黎明之前，让最后三封信到家。', 'The last ferry is about to leave. Bring the last three letters home before dawn.'],
+    hint: ['两盏诱灯都派得上用场。留意亮灯后改变的雾格。', 'Both decoys can buy you time. Watch the forecast change as you ready each light.'],
+    limit: 24,
+    lanterns: 2,
+    rows: [
+      '..##.#.',
+      '.##..#.',
+      '.###...',
+      'P...M#.',
+      '.#...M#',
+      '#...#.F',
+      'M....#.',
+    ],
+  },
+];
+
+if (typeof module !== 'undefined') module.exports = MothCampaign;

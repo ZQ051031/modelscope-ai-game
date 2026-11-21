@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1420">
+  <meta name="description" content="月蛾邮局 Mothlight Post — a turn-based rooftop puzzle. Deliver letters, outwit the fog, and make it home.">
+  <link rel="stylesheet" href="web/style.css">
+  <link rel="icon" href="web/art/icon.png" type="image/png">
+  <title>月蛾邮局 · Mothlight Post</title>
+  <script src="web/game.js" defer></script>
+  <script src="web/chapters.js" defer></script>
+  <script src="web/copy.js" defer></script>
+  <script src="web/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <button id="home-button" class="wordmark" type="button" data-label="home">
+      <span class="brand-icon" aria-hidden="true"><i></i></span>
+      <span><strong data-copy="brand"></strong><small>M O T H L I G H T &nbsp; P O S T</small></span>
+    </button>
+    <div class="utilities">
+      <button id="language" class="utility" type="button"></button>
+      <button id="sound" class="utility" type="button" aria-pressed="false"></button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="landing" aria-labelledby="game-title">
+      <div class="hero">
+        <img class="hero-art" src="web/art/mothlight.webp" width="1440" height="960" alt="" fetchpriority="high">
+        <div class="hero-content">
+          <p class="kicker"><span aria-hidden="true">✦</span> <span data-copy="kicker"></span></p>
+          <h1 id="game-title" data-copy="title"></h1>
+          <p class="hero-lede" data-copy="lede"></p>
+          <div class="hero-actions">
+            <button id="start" class="primary" type="button"></button>
+            <button id="intro-help" class="secondary" type="button" data-copy="how"></button>
+          </div>
+        </div>
+      </div>
+
+      <section class="route-guide" aria-labelledby="route-title">
+        <div class="section-heading">
+          <h2 id="route-title" data-copy="districts"></h2>
+          <p id="best-score"></p>
+        </div>
+        <ol class="route-list" id="route-list"></ol>
+      </section>
+    </section>
+
+    <section id="play" aria-labelledby="chapter-title" hidden>
+      <div class="play-heading">
+        <button id="back" class="text-button" type="button" data-copy="back"></button>
+        <div id="progress-markers" class="progress-markers" aria-hidden="true"></div>
+      </div>
+      <div class="game-layout">
+        <section class="board-frame" aria-labelledby="board-title">
+          <div class="board-heading">
+            <div>
+              <p id="chapter-index" class="kicker"></p>
+              <h1 id="chapter-title" tabindex="-1"></h1>
+            </div>
+            <div class="turn-plate">
+              <strong id="turn-number"></strong>
+              <span data-copy="turns"></span>
+            </div>
+          </div>
+          <h2 id="board-title" class="sr-only" data-copy="boardTitle"></h2>
+          <div class="board" id="board" role="group" data-label="boardTitle"></div>
+          <div class="legend">
+            <span><i class="legend-mark home-mark" aria-hidden="true"></i><span data-copy="post"></span></span>
+            <span><i class="legend-mark letter-mark" aria-hidden="true"></i><span data-copy="mail"></span></span>
+            <span><i class="legend-mark fog-mark" aria-hidden="true"></i><span data-copy="fog"></span></span>
+            <span><i class="legend-mark warning-mark" aria-hidden="true"></i><span data-copy="forecast"></span></span>
+          </div>
+        </section>
+
+        <aside class="mission" data-label="mission">
+          <div class="district-art">
+            <p id="district-note"></p>
+          </div>
+          <div class="mission-inner">
+            <div class="stats">
+              <div><span data-copy="delivered"></span><strong id="mail-count"></strong></div>
+              <div><span data-copy="score"></span><strong id="score"></strong></div>
+            </div>
+            <div class="mission-task">
+              <p id="objective"></p>
+              <p id="hint"></p>
+            </div>
+            <button id="lantern" class="lantern-button" type="button" aria-pressed="false">
+              <i class="lantern-mark" aria-hidden="true"></i>
+              <span><strong id="lantern-label"></strong><small id="lantern-note"></small></span>
+              <span id="lantern-count" class="lantern-count"></span>
+            </button>
+            <div class="flight-controls">
+              <div class="flight-copy">
+                <strong data-copy="fly"></strong>
+                <span data-copy="controls"></span>
+              </div>
+              <div class="dpad" id="dpad" role="group" data-label="fly"></div>
+            </div>
+            <div class="mission-actions">
+              <button id="retry" class="text-button" type="button" data-copy="retry"></button>
+              <button id="play-help" class="text-button" type="button" data-copy="how"></button>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <p class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <span data-copy="credit"></span>
+  </footer>
+
+  <dialog id="help" aria-labelledby="help-title">
+    <form method="dialog">
+      <button class="dialog-close" type="submit" data-label="close">×</button>
+      <p class="kicker" data-copy="fieldGuide"></p>
+      <h2 id="help-title" data-copy="how"></h2>
+      <ol class="rules">
+        <li data-copy="ruleMove"></li>
+        <li data-copy="ruleFog"></li>
+        <li data-copy="ruleLantern"></li>
+        <li data-copy="ruleGoal"></li>
+      </ol>
+      <p class="scoring-rule" data-copy="ruleScore"></p>
+      <button class="primary" type="submit" data-copy="understood"></button>
+    </form>
+  </dialog>
+  <dialog id="result" aria-labelledby="result-title" aria-describedby="result-detail">
+    <div>
+      <p id="result-kicker" class="kicker"></p>
+      <h2 id="result-title"></h2>
+      <p id="result-detail" class="result-detail"></p>
+      <dl class="result-score">
+        <div><dt data-copy="resultPoints"></dt><dd id="result-points"></dd></div>
+        <div><dt data-copy="score"></dt><dd id="result-total"></dd></div>
+      </dl>
+      <div class="dialog-actions">
+        <button id="result-primary" class="primary" type="button"></button>
+        <button id="result-home" class="secondary" type="button" data-copy="home"></button>
+      </div>
+    </div>
+  </dialog>
+
+  <noscript><p class="shell">请启用 JavaScript 开始游戏。 Enable JavaScript to play Mothlight Post.</p></noscript>
+</body>
+</html>
